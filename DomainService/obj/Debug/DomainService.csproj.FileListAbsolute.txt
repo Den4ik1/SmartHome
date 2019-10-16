@@ -1,0 +1,11 @@
+D:\Study\C#\SmartHome\SmartHome\DomainService\bin\Debug\DomainService.dll
+D:\Study\C#\SmartHome\SmartHome\DomainService\bin\Debug\DomainService.pdb
+D:\Study\C#\SmartHome\SmartHome\DomainService\bin\Debug\Domain.dll
+D:\Study\C#\SmartHome\SmartHome\DomainService\bin\Debug\Infrastructure.dll
+D:\Study\C#\SmartHome\SmartHome\DomainService\bin\Debug\Domain.pdb
+D:\Study\C#\SmartHome\SmartHome\DomainService\bin\Debug\Infrastructure.pdb
+D:\Study\C#\SmartHome\SmartHome\DomainService\obj\Debug\DomainService.csprojAssemblyReference.cache
+D:\Study\C#\SmartHome\SmartHome\DomainService\obj\Debug\DomainService.csproj.CoreCompileInputs.cache
+D:\Study\C#\SmartHome\SmartHome\DomainService\obj\Debug\DomainService.csproj.CopyComplete
+D:\Study\C#\SmartHome\SmartHome\DomainService\obj\Debug\DomainService.dll
+D:\Study\C#\SmartHome\SmartHome\DomainService\obj\Debug\DomainService.pdb

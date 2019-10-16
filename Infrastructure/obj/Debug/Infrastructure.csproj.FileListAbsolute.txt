@@ -1,0 +1,6 @@
+D:\Study\C#\SmartHome\SmartHome\Infrastructure\bin\Debug\Infrastructure.dll
+D:\Study\C#\SmartHome\SmartHome\Infrastructure\bin\Debug\Infrastructure.pdb
+D:\Study\C#\SmartHome\SmartHome\Infrastructure\obj\Debug\Infrastructure.csprojAssemblyReference.cache
+D:\Study\C#\SmartHome\SmartHome\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
+D:\Study\C#\SmartHome\SmartHome\Infrastructure\obj\Debug\Infrastructure.dll
+D:\Study\C#\SmartHome\SmartHome\Infrastructure\obj\Debug\Infrastructure.pdb
