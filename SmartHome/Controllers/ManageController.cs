@@ -306,7 +306,7 @@ namespace SmartHome.Controllers
         public ActionResult LinkLogin(string provider)
         {
             // Запрос перенаправления к внешнему поставщику входа для связывания имени входа текущего пользователя
-            return new StartController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
         //

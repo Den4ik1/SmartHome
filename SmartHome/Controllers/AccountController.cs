@@ -13,16 +13,16 @@ using SmartHome.Models;
 namespace SmartHome.Controllers
 {
     [Authorize]
-    public class StartController : Controller
+    public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public StartController()
+        public AccountController()
         {
         }
 
-        public StartController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;

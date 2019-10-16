@@ -17,7 +17,7 @@ namespace InfrastructureService.Repository
 
         public IList<Device> GetAll()
         {
-            return _context.Device.ToList();
+            return _context.Devices.ToList();
         }
     }
 }

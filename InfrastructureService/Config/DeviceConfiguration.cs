@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace InfrastructureService.Config
 {
-    class DeviceConfiguration : IEntityTypeConfiguration<Device>
+    public class DeviceConfiguration : IEntityTypeConfiguration<Device>
     {
         public void Configure(EntityTypeBuilder<Device> builder)
         {

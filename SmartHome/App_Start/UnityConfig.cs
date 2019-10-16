@@ -1,5 +1,7 @@
+using DI.Models;
 using System;
 using Unity;
+using Unity.Injection;
 
 namespace SmartHome
 {
@@ -35,6 +37,11 @@ namespace SmartHome
         /// </remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
+            DemainDevice x = new DemainDevice();
+            x.Registre(container);
+
+            InfrastructureDevice y = new InfrastructureDevice();
+            y.Registre(container);
             // NOTE: To load from web.config uncomment the line below.
             // Make sure to add a Unity.Configuration to the using statements.
             // container.LoadConfiguration();

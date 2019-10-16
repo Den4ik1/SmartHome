@@ -6,7 +6,7 @@ namespace InfrastructureService.Context
 {
     public class DeviceContext : DbContext
     {
-        public virtual DbSet<Device> Device { get; set; }
+        public virtual DbSet<Device> Devices { get; set; }
 
 
         public DeviceContext(DbContextOptions<DeviceContext> options) : base(options)

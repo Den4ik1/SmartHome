@@ -19,8 +19,7 @@ namespace SmartHome.Controllers
         public ActionResult GetDevices()
         {
             var res = _deviceAPI.GetAllDomain();
-            IList<DeviceAPI> list = res.Select(_ => _.ConvertToAPI()).ToList();
-            ViewBag(list);
+            ViewBag.list = res.Select(_ => _.ConvertToAPI()).ToList();
             return View();
         }
 

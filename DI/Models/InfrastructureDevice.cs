@@ -18,9 +18,8 @@ namespace DI.Models
 
             var optionsBuilder = new DbContextOptionsBuilder<DeviceContext>();
 
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["Context"].ConnectionString);
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["DeviceContext"].ConnectionString);
             using (var context = new DeviceContext(optionsBuilder.Options)) context.Database.EnsureCreated();
-
             container.RegisterType<DeviceContext>(new HierarchicalLifetimeManager(), new InjectionConstructor(optionsBuilder.Options));
         }
 
