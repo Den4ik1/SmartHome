@@ -1,7 +1,6 @@
 using DI.Models;
 using System;
 using Unity;
-using Unity.Injection;
 
 namespace SmartHome
 {
