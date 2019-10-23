@@ -199,3 +199,4 @@ D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\InfrastructureService.dll.config
 D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\Infrastructure.pdb
 D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\DomainService.dll
 D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\DomainService.pdb
+D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\MQTTnet.dll

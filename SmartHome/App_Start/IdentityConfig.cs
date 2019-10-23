@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.DataProtection;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
-using Microsoft.Owin.Security;
 using SmartHome.Models;
+using Microsoft.Owin.Security;
 
 namespace SmartHome
 {
@@ -35,57 +30,53 @@ namespace SmartHome
     // Настройка диспетчера пользователей приложения. UserManager определяется в ASP.NET Identity и используется приложением.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store)
-            : base(store)
+        public ApplicationUserManager(IUserStore<ApplicationUser> store) : base(store)
         {
-        }
-
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
-        {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
-            // Настройка логики проверки имен пользователей
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+            // Configure validation logic for usernames
+            this.UserValidator = new UserValidator<ApplicationUser>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
-            // Настройка логики проверки паролей
-            manager.PasswordValidator = new PasswordValidator
+            // Configure validation logic for passwords
+            this.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-               /* RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,*/
+                //RequireNonLetterOrDigit = false,
+                //RequireDigit = false,
+                //RequireLowercase = false,
+                //RequireUppercase = false,
             };
 
-            // Настройка параметров блокировки по умолчанию
-            manager.UserLockoutEnabledByDefault = true;
-            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            manager.MaxFailedAccessAttemptsBeforeLockout = 5;
+            // Configure user lockout defaults
+            this.UserLockoutEnabledByDefault = true;
+            this.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            this.MaxFailedAccessAttemptsBeforeLockout = 5;
 
-            // Регистрация поставщиков двухфакторной проверки подлинности. Для получения кода проверки пользователя в данном приложении используется телефон и сообщения электронной почты
-            // Здесь можно указать собственный поставщик и подключить его.
-            manager.RegisterTwoFactorProvider("Код, полученный по телефону", new PhoneNumberTokenProvider<ApplicationUser>
+            // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
+            // You can write your own provider and plug it in here.
+            this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<ApplicationUser>
             {
-                MessageFormat = "Ваш код безопасности: {0}"
+                MessageFormat = "Your security code is {0}"
             });
-            manager.RegisterTwoFactorProvider("Код из сообщения", new EmailTokenProvider<ApplicationUser>
+            this.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<ApplicationUser>
             {
-                Subject = "Код безопасности",
-                BodyFormat = "Ваш код безопасности: {0}"
+                Subject = "Security Code",
+                BodyFormat = "Your security code is {0}"
             });
-            manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
-            var dataProtectionProvider = options.DataProtectionProvider;
+            this.EmailService = new EmailService();
+            this.SmsService = new SmsService();
+
+            var dataProtectionProvider = Startup.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                IDataProtector dataProtector = dataProtectionProvider.Create("ASP.NET Identity");
+                this.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector);
             }
-            return manager;
         }
+
+        
     }
 
     // Настройка диспетчера входа для приложения.
@@ -101,9 +92,6 @@ namespace SmartHome
             return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
         }
 
-        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
-        {
-            return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
-        }
+     
     }
 }

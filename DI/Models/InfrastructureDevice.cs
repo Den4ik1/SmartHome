@@ -12,7 +12,7 @@ namespace DI.Models
 {
     public class InfrastructureDevice : IModels
     {
-        public void Registre(IUnityContainer container)
+        public void Register(IUnityContainer container)
         {
             container.RegisterType<IDevice, DeviceRepository>(new HierarchicalLifetimeManager());
 

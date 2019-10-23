@@ -1,0 +1,2 @@
+D:\Study\C#\SmartHome\SmartHome\Broker\obj\Debug\Broker.csprojAssemblyReference.cache
+D:\Study\C#\SmartHome\SmartHome\Broker\obj\Debug\Broker.csproj.CoreCompileInputs.cache

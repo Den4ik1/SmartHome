@@ -7,7 +7,7 @@ namespace DI.Models
 {
     public class DemainDevice : IModels
     {
-        public void Registre(IUnityContainer container)
+        public void Register(IUnityContainer container)
         {
             container.RegisterType<IDomainDevice, ServiceDevice>(new HierarchicalLifetimeManager());
         }
