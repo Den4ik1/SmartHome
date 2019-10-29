@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RebitMQ;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,7 @@ namespace SmartHome
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Broker.Start();
         }
     }
 }

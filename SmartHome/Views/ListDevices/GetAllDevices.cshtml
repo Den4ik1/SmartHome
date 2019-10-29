@@ -1,0 +1,120 @@
+﻿@using SmartHome.Models
+@model IEnumerable<DeviceAPI>
+
+@{
+    ViewBag.Title = "Master";
+    int temperatura = 0;
+    foreach (var element in Model)
+    {
+        if (element.Type == "Temperature sensor")
+        {
+            temperatura = element.Value;
+        }
+    }
+    //Layout = null;
+    //<link rel="stylesheet" href="~/assets/vendor/bootstrap/css/bootstrap.min.css">
+    //
+}
+
+<title>Info</title>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <div class="container-fluid  dashboard-content">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h2 class="pageheader-title">Gauge</h2>
+                </div>
+            </div>
+
+
+            <div class="row">
+                @foreach (var element in  Model)
+                {
+                    if (element.Type == "Temperature sensor")
+                    {
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <h5 class="card-header">Temperature ID @element.ID</h5>
+                            <div class="card-body">
+                                <canvas id="gauge1"> </canvas>
+                                <h3 class="card-header"> @element.Value C </h3>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+
+
+                            <h5 class="card-header">Lamp ID @element.ID</h5>
+                            <div class="card-body">
+                                @if (element.Condition)
+                                {
+                                    <div class="switch-button switch-button-success">
+                                        <input type="checkbox" checked="" name="@element.ID" id="@element.ID"><span>
+                                            <label for="@element.ID"></label>
+                                        </span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="switch-button switch-button-success">
+                                        <input type="checkbox" name="@element.ID" id="@element.ID"><span>
+                                            <label for="@element.ID"></label>
+                                        </span>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="~/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="~/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/assets/vendor/gauge/gauge.min.js"></script>
+    <script>
+
+        $(function () {
+            "use strict";
+
+            var opts = {
+                angle: 0, // The span of the gauge arc
+                lineWidth: 0.32, // The line thickness
+                radiusScale: 1, // Relative radius
+                pointer: {
+                    length: 0.6, // // Relative to gauge radius
+                    strokeWidth: 0.088, // The thickness
+                    color: '#2e2f39' // Fill color
+                },
+                limitMax: false, // If false, max value increases automatically if value > maxValue
+                limitMin: false, // If true, the min value of the gauge will be fixed
+                colorStart: '#e4e4ee', // Colors
+                colorStop: '#FF4500', // just experiment with them
+                strokeColor: '#ADD8E6', // to see which ones work best for you
+                generateGradient: true,
+                highDpiSupport: true, // High resolution support
+
+            };
+
+
+            var target = document.getElementById('gauge1'); // your canvas element
+            var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+            gauge.maxValue = 50; // set max gauge value
+            gauge.setMinValue(-50); // Prefer setter over gauge.minValue = 0
+            gauge.animationSpeed = 25; // set animation speed (32 is default value)
+            gauge.set(@temperatura); // set actual value
+
+        });
+    </script>
+
+
+</body>

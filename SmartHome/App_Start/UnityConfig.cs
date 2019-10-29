@@ -3,6 +3,7 @@ using DI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using RebitMQ;
 using SmartHome.Models;
 using System;
 using System.Web;
@@ -40,6 +41,8 @@ namespace SmartHome
             container.RegisterType<ApplicationUserManager>();
             container.RegisterType<EmailService>();
             container.RegisterType<SmsService>();
+
+            //container.RegisterType<Broker>();
 
             container.RegisterType<IAuthenticationManager>(
   new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
@@ -17,10 +17,23 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/demo/demo.css" rel="stylesheet" />
 
+    <!--For termometr-->
+    <link href="~/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/libs/css/style.css">
+    <link rel="stylesheet" href="~/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @RenderBody()
+    <style type="text/css">
+        TD, TH {
+            padding: 3px; /* Поля вокруг содержимого таблицы */
+            border: 1px solid black; /* Параметры рамки */
+        }
+    </style>
+
+
 </head>
 <body>
 
@@ -49,7 +62,7 @@
                         }
                     </li>
                     <li class="nav-item">
-                        @using (Html.BeginForm("GetDevices1", "ListDevices", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        @using (Html.BeginForm("GetAllDevices", "ListDevices", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
                             @Html.AntiForgeryToken()
                             <div>

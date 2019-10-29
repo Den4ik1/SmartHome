@@ -200,3 +200,5 @@ D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\Infrastructure.pdb
 D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\DomainService.dll
 D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\DomainService.pdb
 D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\MQTTnet.dll
+D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\RebitMQ.dll
+D:\Study\C#\SmartHome\SmartHome\SmartHome\bin\RebitMQ.pdb

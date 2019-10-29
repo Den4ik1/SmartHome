@@ -340,7 +340,7 @@
 }
 
 .noUi-origin[style^="left: 0"] .noUi-handle {
-  background-color: #fff;
+  background-color: #000;
   border: 2px solid #c8c8c8;
 }
 

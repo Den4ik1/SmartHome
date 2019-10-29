@@ -1,6 +1,7 @@
 ﻿@model SmartHome.Models.DeviceAPI
 @{
     ViewBag.Title = "Master";
+    
 }
 <body color: #ffffff;>
     <div background-color="#8f969c">
@@ -16,6 +17,7 @@
             </tr>
             @foreach (var b in ViewBag.list)
             {
+               
             <tr>
                 <td><p>@b.ID</p></td>
                 <td><p>@b.Type</p></td>
