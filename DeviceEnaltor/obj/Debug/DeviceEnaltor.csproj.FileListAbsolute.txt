@@ -1,0 +1,6 @@
+D:\Study\C#\SmartHome\SmartHome\DeviceEnaltor\bin\Debug\DeviceEnaltor.dll
+D:\Study\C#\SmartHome\SmartHome\DeviceEnaltor\bin\Debug\DeviceEnaltor.pdb
+D:\Study\C#\SmartHome\SmartHome\DeviceEnaltor\obj\Debug\DeviceEnaltor.csprojAssemblyReference.cache
+D:\Study\C#\SmartHome\SmartHome\DeviceEnaltor\obj\Debug\DeviceEnaltor.csproj.CoreCompileInputs.cache
+D:\Study\C#\SmartHome\SmartHome\DeviceEnaltor\obj\Debug\DeviceEnaltor.dll
+D:\Study\C#\SmartHome\SmartHome\DeviceEnaltor\obj\Debug\DeviceEnaltor.pdb

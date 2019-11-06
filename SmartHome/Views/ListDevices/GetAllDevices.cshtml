@@ -1,78 +1,85 @@
-﻿@using SmartHome.Models
+﻿@using System.Collections.Generic;
+@using System.Linq;
+@using SmartHome.Models
 @model IEnumerable<DeviceAPI>
 
 @{
     ViewBag.Title = "Master";
-    int temperatura = 0;
-    foreach (var element in Model)
-    {
-        if (element.Type == "Temperature sensor")
-        {
-            temperatura = element.Value;
-        }
-    }
-    //Layout = null;
-    //<link rel="stylesheet" href="~/assets/vendor/bootstrap/css/bootstrap.min.css">
-    //
 }
 
 <title>Info</title>
 
 <body>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="title">
+                <h3>Full Info</h3>
+            </div>
 
-    <div class="dashboard-wrapper">
-        <div class="container-fluid  dashboard-content">
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h2 class="pageheader-title">Gauge</h2>
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                    <ul id="tabs" class="nav nav-tabs" role="tablist">
+
+                        @foreach (var tabs_group in Model.GroupBy(_ => _.Information))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#@tabs_group.Key" role="tab">@tabs_group.Key</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
 
+            <div id="my-tab-content" class="tab-content ">
 
-            <div class="row">
-                @foreach (var element in  Model)
+                @foreach (var group in Model.GroupBy(_ => _.Information))
                 {
-                    if (element.Type == "Temperature sensor")
-                    {
-                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <h5 class="card-header">Temperature ID @element.ID</h5>
-                            <div class="card-body">
-                                <canvas id="gauge1"> </canvas>
-                                <h3 class="card-header"> @element.Value C </h3>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-
-
-                            <h5 class="card-header">Lamp ID @element.ID</h5>
-                            <div class="card-body">
-                                @if (element.Condition)
-                                {
-                                    <div class="switch-button switch-button-success">
-                                        <input type="checkbox" checked="" name="@element.ID" id="@element.ID"><span>
-                                            <label for="@element.ID"></label>
-                                        </span>
+                    <div class="tab-pane @((group.Key == "Hall") ? "active" : "")" id="@group.Key" role="tabpanel">
+                        @foreach (var element in group)
+                        {
+                            if (element.Type == "Temperature")
+                            {
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <h5 class="card-header">Temperature ID @element.ID</h5>
+                                    <div class="card-body">
+                                        <canvas id="temp-@element.ID"> </canvas>
+                                        <h3 class="card-header"> @element.Value C </h3>
                                     </div>
-                                }
-                                else
-                                {
-                                    <div class="switch-button switch-button-success">
-                                        <input type="checkbox" name="@element.ID" id="@element.ID"><span>
-                                            <label for="@element.ID"></label>
-                                        </span>
-                                    </div>
-                                }
-                            </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 
-                        </div>
-                    }
+
+                                    <h5 class="card-header">Lamp ID @element.ID</h5>
+                                    <div class="card-body">
+                                        @if (element.Condition)
+                                        {
+                                            <div class="switch-button switch-button-success">
+                                                <input type="checkbox" checked="" name="@element.ID" id="@element.ID"><span>
+                                                    <label for="@element.ID"></label>
+                                                </span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="switch-button switch-button-success">
+                                                <input type="checkbox" name="@element.ID" id="@element.ID"><span>
+                                                    <label for="@element.ID"></label>
+                                                </span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
                 }
             </div>
         </div>
     </div>
+
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->
@@ -105,13 +112,16 @@
 
             };
 
+            @foreach (var element in Model.Where(_ => _.Type == "Temperature").ToList())
+            {
 
-            var target = document.getElementById('gauge1'); // your canvas element
-            var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-            gauge.maxValue = 50; // set max gauge value
-            gauge.setMinValue(-50); // Prefer setter over gauge.minValue = 0
-            gauge.animationSpeed = 25; // set animation speed (32 is default value)
-            gauge.set(@temperatura); // set actual value
+                        @:var target = document.getElementById('temp-@element.ID'); // your canvas element
+                        @:var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+                        @:gauge.maxValue = 50; // set max gauge value
+                        @:gauge.setMinValue(-50); // Prefer setter over gauge.minValue = 0
+                        @:gauge.animationSpeed = 25; // set animation speed (32 is default value)
+                        @:gauge.set(@element.Value); // set actual value
+            }
 
         });
     </script>

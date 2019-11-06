@@ -4360,15 +4360,7 @@ License - nucleoapp.com/license/
   top: -10px;
 }
 
-.profile-content .tab-content .tab-pane {
-  min-height: 200px;
-}
 
-.profile-content .tab-content #tweets,
-.profile-content .tab-content #connections,
-.profile-content .tab-content #media {
-  height: 100%;
-}
 
 /*             Navigation Pills               */
 

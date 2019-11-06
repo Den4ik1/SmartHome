@@ -18,7 +18,8 @@ namespace SmartHome
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Broker.Start();
+            Broker _ = new Broker();
+            _.Start();
         }
     }
 }
